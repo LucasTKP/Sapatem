@@ -15,7 +15,7 @@ const config: Config = {
       },
       colors: {
         background: "#EBEBEB",
-        primary: "#662D0F",
+        primary: "#7B3C1B",
         secondary: "#E1876A",
         terciary: "#7B3C1B",
         ...defaultTheme.colors,

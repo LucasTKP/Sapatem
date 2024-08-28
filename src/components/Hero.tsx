@@ -4,7 +4,7 @@ import Shoes from "@/assets/images/shoes_hero.png";
 
 export default function Hero() {
   return (
-    <div className="px-[10%] max-md:px-[2%] mt-[30px] max-md:mt-[20px]">
+    <section className="px-[10%] max-md:px-[2%] mt-[30px] max-md:mt-[20px]">
       <Image
         src={Shoes}
         alt="logo"
@@ -13,6 +13,6 @@ export default function Hero() {
         className="w-full aspect-[9/4] rounded-[10px] hover:brightness-90 cursor-pointer duration-200"
         priority
       />
-    </div>
+    </section>
   );
 }
