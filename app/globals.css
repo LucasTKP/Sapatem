@@ -7,3 +7,23 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+.embla {
+  position: relative;
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+}
+
+.embla__slide {
+  position: relative;
+  min-width: 100%;
+  overflow: hidden;
+}

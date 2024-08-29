@@ -10,8 +10,8 @@ export default function Header() {
     <header className="w-full flex justify-between items-center bg-primary px-[10%] py-[15px] max-md:py-[5px]">
       <Image src={logo} alt="logo" width={100} className="max-md:w-[80px]"/>
       <div className="flex gap-x-[100px] max-lg:gap-x-[80px] ml-[100px] max-md:hidden">
-        <HeaderButton title="Sapatos" href="/" />
-        <HeaderButton title="Carteiras" href="/" />
+        <HeaderButton title="Sapatos" href="/#sapatos" />
+        <HeaderButton title="Carteiras" href="/#carteiras" />
         <HeaderButton title="Cintos" href="/" />
       </div>
       <div className="md:hidden">
