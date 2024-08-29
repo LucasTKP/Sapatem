@@ -1,7 +1,6 @@
 import { axiosInstance } from "@/src/libs/axios";
 import { createProduct, Product } from "@/src/models/product";
 import React, { useEffect, useState } from "react";
-import 'swiper/css';
 import CardProduct from "./components/card_product";
 
 interface Props {
