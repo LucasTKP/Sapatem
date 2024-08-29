@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/assets/images/logo.png";
 
 export default function Footer() {
   return (
     <footer className="py-10 text-white border-t-2 border-gray-500 bg-primary px-[10%] max-md:px-[2%]">
       <div className="container flex justify-between flex-wrap  max-md:gap-5 gap-3">
-        <Image className="w-[100px] h-full" src={Logo} alt="Logo 2Core" />
+        <Image className="w-[100px] h-full" src={'/images/logo.png'} width={100} height={100} alt="Logo 2Core" />
         <div>
           <h3 className="font-bold text-[20px] max-md:text-[16px]">Menu</h3>
           <ul className="text-lighting">

@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <div>
       <Hero />
-      <SectionProducts categoryId={13} categoryName="sapatos" title={"Sapatos"} background="bg-terciary/50" />
+      <SectionProducts categoryId={1} categoryName="sapatos" title={"Sapatos"} background="bg-terciary/50" />
       <SectionProducts categoryId={2} categoryName="carteiras" title={"Eletrônicos"}  background="bg-background"/>
       <Footer />
     </div>
