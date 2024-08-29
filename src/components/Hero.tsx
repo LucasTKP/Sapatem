@@ -1,35 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
 
 export default function Hero() {
   const nameImages = ["shoe_hero.png", "belt_hero.png", "portfolio_hero.png"];
-  const [emblaRef] = useEmblaCarousel({ loop: true }, [
+  const links = ["#sapatos", "#carteiras", "#cintos"];
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 3000, stopOnInteraction: false }),
   ]);
 
+  useEffect(() => {
+    if (emblaApi) {
+      // Adicione aqui lógica adicional, se necessário
+    }
+  }, [emblaApi]);
+
   return (
-    <section className="px-[10%] max-md:px-[2%] mt-[30px] max-md:mt-[20px]">
+    <section className="px-[10%] max-lg:px-[6%] max-md:px-[2%] mt-[30px] max-md:mt-[20px]">
       <div className="relative w-full">
         <div className="embla" ref={emblaRef}>
-          <div className="embla__container">
+          <div className="embla__container flex">
             {nameImages.map((image, index) => (
-              <div
-                key={index}
-                className="embla__slide flex justify-center"
-              >
+              <Link href={links[index]} key={index} className="embla__slide flex justify-center">
                 <Image
                   src={`/images/${image}`}
-                  alt={"Banner"}
-                  layout="responsive"
+                  alt={`Banner ${index + 1}`}
                   width={1000}
                   height={1000}
                   quality={100}
                   priority={true}
-                  className="aspect-[12/5] border-[2px]"
+                  className="object-fill aspect-[12/5] max-md:aspect-[12/8] border-[2px]"
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -39,6 +43,7 @@ export default function Hero() {
               key={index}
               className="w-2 h-2 bg-gray-400 rounded-full"
               aria-label={`Slide ${index + 1}`}
+              onClick={() => emblaApi && emblaApi.scrollTo(index)}
             ></button>
           ))}
         </div>

@@ -7,7 +7,7 @@ export default function CardProduct({ product }: { product: Product }) {
   const [emblaRef] = useEmblaCarousel({ loop: false });
 
   return (
-    <div className="rounded-lg w-[300px] max-xl:w-[250px] max-lg:w-[205px] max-md:w-[185px] max-xsm:w-[160px] bg-white shadow-md">
+    <div className="rounded-lg w-[300px] max-xl:w-[250px] max-lg:w-[205px] max-md:w-[185px] max-sm:w-[160px] bg-white shadow-md pb-[10px] hover:brightness-90 duration-200 cursor-pointer">
       <div className="relative w-full  overflow-hidden">
         <div className="embla" ref={emblaRef}>
           <div className="embla__container">
@@ -20,7 +20,6 @@ export default function CardProduct({ product }: { product: Product }) {
                   <Image
                     src={image}
                     alt={`Imagem do produto ${product.title}`}
-                    layout="responsive"
                     width={300}
                     height={200}
                     className="object-cover aspect-[8/10]"
@@ -44,7 +43,7 @@ export default function CardProduct({ product }: { product: Product }) {
           ))}
         </div>
       </div>
-      <h5 className="font-bold text-lg mt-2 px-[10px] text-primary text-center truncate">
+      <h5 className="font-bold text-lg mt-2 px-[10px] text-primary text-center truncate  max-lg:text[14px]">
         {product.title}
       </h5>
       <p className="text-gray-700 px-[10px] text-center">

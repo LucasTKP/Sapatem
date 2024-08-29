@@ -26,17 +26,17 @@ export default function HeaderMenu() {
           <ul className="font-medium flex flex-col gap-y-[5px]">
             <HeaderMenuButton
               title={"Sapatos"}
-              href={"/#sapatos"}
+              href={"#sapatos"}
               onClick={handleMenuClose}
             />
             <HeaderMenuButton
               title={"Carteiras"}
-              href={"/#carteiras"}
+              href={"#carteiras"}
               onClick={handleMenuClose}
             />
             <HeaderMenuButton
               title={"Cintos"}
-              href={""}
+              href={"#cintos"}
               onClick={handleMenuClose}
             />
           </ul>
