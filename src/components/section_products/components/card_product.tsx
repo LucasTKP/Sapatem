@@ -1,9 +1,9 @@
-import { Product } from "@/src/models/product";
+import { ProductModel } from "@/src/models/product";
 import React from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 
-export default function CardProduct({ product }: { product: Product }) {
+export default function CardProduct({ product }: { product: ProductModel }) {
   const [emblaRef] = useEmblaCarousel({ loop: false });
 
   return (

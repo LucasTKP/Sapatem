@@ -17,9 +17,21 @@ export default function HeaderMenu() {
         }`}
         onClick={() => setMenuIsOpen(!menuIsOpen)}
       >
-        <div className={`w-[25px] h-[3px] bg-background rounded-sm duration-200 ${menuIsOpen ? "rotate-45 absolute" : ""}`} />
-        <div className={`w-[25px] h-[3px] bg-background rounded-sm duration-200 ${menuIsOpen ? "rotate-[135deg] absolute" : ""}`}/>
-        <div className={`w-[25px] h-[3px] bg-background rounded-sm duration-200 ${menuIsOpen ? "hidden" : ""}`} />
+        <div
+          className={`w-[25px] h-[3px] bg-background rounded-sm duration-200 ${
+            menuIsOpen ? "rotate-45 absolute" : ""
+          }`}
+        />
+        <div
+          className={`w-[25px] h-[3px] bg-background rounded-sm duration-200 ${
+            menuIsOpen ? "rotate-[135deg] absolute" : ""
+          }`}
+        />
+        <div
+          className={`w-[25px] h-[3px] bg-background rounded-sm duration-200 ${
+            menuIsOpen ? "hidden" : ""
+          }`}
+        />
       </button>
       {menuIsOpen && (
         <div className="absolute right-0 bg-[#EBEBEB] px-[10px] py-[5px] rounded-lg border-2 border-black z-10">
@@ -36,6 +48,11 @@ export default function HeaderMenu() {
             />
             <HeaderMenuButton
               title={"Cintos"}
+              href={"#cintos"}
+              onClick={handleMenuClose}
+            />
+            <HeaderMenuButton
+              title={"Administrador"}
               href={"#cintos"}
               onClick={handleMenuClose}
             />

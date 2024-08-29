@@ -1,9 +1,9 @@
-import { createProduct, Product } from "../models/product";
+import { createProduct, ProductModel } from "../models/product";
 import productService from "../services/product_service";
 
 async function getProductsByCategory(
   categoryId: number
-): Promise<Array<Product>> {
+): Promise<Array<ProductModel>> {
   const response = await productService.getProductsByCategory(categoryId);
   const products = response.data.map((productData: any) => {
     return createProduct({
@@ -19,27 +19,51 @@ async function getProductsByCategory(
   return products;
 }
 
-function sortProductsByNameAscending(products: Product[]): Product[] {
-  return products.sort((a, b) => a.title.localeCompare(b.title));
+function sortProductsByCategoryAscending(
+  products: ProductModel[]
+): ProductModel[] {
+  return products.sort((a, b) => a.category.name.localeCompare(b.category.name));
 }
-function sortProductsByNameDescending(products: Product[]): Product[] {
-  return products.sort((a, b) => b.title.localeCompare(a.title));
+function sortProductsByCategoryDescending(
+  products: ProductModel[]
+): ProductModel[] {
+  return products.sort((a, b) => b.category.name.localeCompare(a.category.name));
 }
 
-function sortProductsByPriceAscending(products: Product[]): Product[] {
+function sortProductsByPriceAscending(
+  products: ProductModel[]
+): ProductModel[] {
   return products.sort((a, b) => a.price - b.price);
 }
 
-function sortProductsByPriceDescending(products: Product[]): Product[] {
+function sortProductsByPriceDescending(
+  products: ProductModel[]
+): ProductModel[] {
   return products.sort((a, b) => b.price - a.price);
+}
+
+interface SearchProductsProps {
+  products: ProductModel[];
+  textSearch: string;
+}
+
+export function searchProducts({
+  products,
+  textSearch,
+}: SearchProductsProps): ProductModel[] {
+  const productsFiltered = products.filter((product) =>
+    product.title.toLocaleLowerCase().includes(textSearch.toLocaleLowerCase())
+  );
+  return productsFiltered;
 }
 
 const productController = {
   getProductsByCategory,
-  sortProductsByNameAscending,
-  sortProductsByNameDescending,
+  sortProductsByCategoryAscending,
+  sortProductsByCategoryDescending,
   sortProductsByPriceAscending,
   sortProductsByPriceDescending,
+  searchProducts,
 };
 
 export default productController;

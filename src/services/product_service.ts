@@ -1,9 +1,9 @@
 import { axiosInstance } from "../libs/axios";
-import { Product } from "../models/product";
+import { ProductModel } from "../models/product";
 import { AxiosResponse } from 'axios';
 
-async function getProductsByCategory(categoryId: number): Promise<AxiosResponse<Product[]>> {
-  return await axiosInstance.get<Product[]>(`/products/?categoryId=${categoryId}`);
+async function getProductsByCategory(categoryId: number): Promise<AxiosResponse<ProductModel[]>> {
+  return await axiosInstance.get<ProductModel[]>(`/products/?categoryId=${categoryId}`);
 }
 
 const productService = {

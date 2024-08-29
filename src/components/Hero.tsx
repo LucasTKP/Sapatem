@@ -1,21 +1,16 @@
-import React, { useEffect } from "react";
+'use client';
+import React from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
 
 export default function Hero() {
-  const nameImages = ["shoe_hero.png", "belt_hero.png", "portfolio_hero.png"];
+  const nameImages = ["shoe_hero.png", "belt_hero.png", "wallets_hero.png"];
   const links = ["#sapatos", "#carteiras", "#cintos"];
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 3000, stopOnInteraction: false }),
   ]);
-
-  useEffect(() => {
-    if (emblaApi) {
-      // Adicione aqui lógica adicional, se necessário
-    }
-  }, [emblaApi]);
 
   return (
     <section className="px-[10%] max-lg:px-[6%] max-md:px-[2%] mt-[30px] max-md:mt-[20px]">
@@ -23,7 +18,11 @@ export default function Hero() {
         <div className="embla" ref={emblaRef}>
           <div className="embla__container flex">
             {nameImages.map((image, index) => (
-              <Link href={links[index]} key={index} className="embla__slide flex justify-center">
+              <Link
+                href={links[index]}
+                key={index}
+                className="embla__slide flex justify-center"
+              >
                 <Image
                   src={`/images/${image}`}
                   alt={`Banner ${index + 1}`}

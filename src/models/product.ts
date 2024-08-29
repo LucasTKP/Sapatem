@@ -1,10 +1,10 @@
 import { element } from './../../node_modules/@types/prop-types/index.d';
-export interface Product {
+export interface ProductModel {
   id: number;
   title: string;
   price: number;
   description: string;
-  category: Category;
+  category: CategoryModel;
   images: string[];
 }
 
@@ -20,9 +20,9 @@ export function createProduct({
   title: string;
   price: number;
   description: string;
-  category: Category;
+  category: CategoryModel;
   images: string[];
-}): Product {
+}): ProductModel {
   return {
     id,
     title,

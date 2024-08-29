@@ -1,7 +1,8 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import CardProduct from "./components/card_product";
 import productController from "@/src/controllers/product_controller";
-import { createProduct, Product } from "@/src/models/product";
+import { createProduct, ProductModel } from "@/src/models/product";
 
 interface Props {
   categoryId: number;
@@ -18,7 +19,7 @@ export default function SectionProducts({
   background,
   darkMode,
 }: Props) {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductModel[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [productsPerPage] = useState<number>(5);
@@ -45,7 +46,7 @@ export default function SectionProducts({
       } catch (e) {
         console.error(e);
         alert(
-          `Não foi possível carregar os produtos da categoria ${categoryName}`
+          `Não foi possível carregar os produtsos da categoria ${categoryName}`
         );
       } finally {
         setLoading(false);
@@ -68,11 +69,11 @@ export default function SectionProducts({
           productController.sortProductsByPriceDescending(products);
         break;
       case FilterType.NAME_ASC:
-        arrayProducts = productController.sortProductsByNameAscending(products);
+        arrayProducts = productController.sortProductsByCategoryAscending(products);
         break;
       case FilterType.NAME_DESC:
         arrayProducts =
-          productController.sortProductsByNameDescending(products);
+          productController.sortProductsByCategoryDescending(products);
         break;
     }
     setProducts([...arrayProducts]);
