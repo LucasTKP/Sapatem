@@ -18,8 +18,8 @@ async function onCreateProduct({ e, setIsLoading, onGetProducts, onCloseDialog }
   try {
     const images = formatFiles(form);
     const urls = await fileService.uploadFile(images);
-    let dataProduct = await formatterDataUser(form, urls);
-    if (verifyDataUser(dataProduct)) {
+    let dataProduct = await formatterDataProduct(form, urls);
+    if (verifyDataProduct(dataProduct)) {
       await productService.uploadProduct(dataProduct);
       toast.success("Produto criado com sucesso.");
       onGetProducts();
@@ -33,7 +33,7 @@ async function onCreateProduct({ e, setIsLoading, onGetProducts, onCloseDialog }
   }
 }
 
-async function formatterDataUser(
+async function formatterDataProduct(
   form: HTMLFormElement,
   urls: String[]
 ): Promise<ProductDTO> {
@@ -49,17 +49,17 @@ async function formatterDataUser(
   return dataProduct;
 }
 
-function verifyDataUser(dataUser: ProductDTO): boolean {
+function verifyDataProduct(dataProduct: ProductDTO): boolean {
   if (
-    dataUser.title &&
-    dataUser.price &&
-    dataUser.description &&
-    dataUser.images.length > 0 &&
-    dataUser.categoryId
+    dataProduct.title &&
+    dataProduct.price &&
+    dataProduct.description &&
+    dataProduct.images.length > 0 &&
+    dataProduct.categoryId
   ) {
     return true;
   }
-  // toast.error("Dados insuficientes");
+  toast.error("Dados insuficientes");
   return false;
 }
 

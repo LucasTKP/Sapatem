@@ -14,7 +14,9 @@ function DialogCreateProduct({ onGetProducts }: DialogCreateProductProps) {
   const [isLoading, setIsLoading] = useState(false);
   const cancelButtonRef = useRef<HTMLButtonElement>(null);
   const { categories } = useContext(CategoriesContext);
-  const [optionsInput, setOptionsInput] = useState<{ value: number; label: string }[]>([]);
+  const [optionsInput, setOptionsInput] = useState<
+    { value: number; label: string }[]
+  >([]);
   const customStyles: StylesConfig = {
     control: (provided) => ({
       ...provided,
@@ -33,7 +35,10 @@ function DialogCreateProduct({ onGetProducts }: DialogCreateProductProps) {
     if (categories) {
       const options = [];
       for (let category of categories) {
-        options.push({ value: category.id, label: category.name.split("-")[0] });
+        options.push({
+          value: category.id,
+          label: category.name.split("-")[0],
+        });
       }
       setOptionsInput(options);
     }
@@ -101,14 +106,14 @@ function DialogCreateProduct({ onGetProducts }: DialogCreateProductProps) {
                 className="w-full p-[8px] rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px] placeholder:text-black/90"
                 name="description"
                 rows={4}
-                placeholder="Adicione a descrição da reunião"
+                placeholder="Adicione a descrição da produto"
                 required
               />
             </label>
 
             <div className="flex items-center justify-between w-full max-xsm:flex-col gap-y-[10px]">
               <label className="flex flex-col w-full">
-                <p className="text-[16px]">Categoria</p>
+                <p>Categoria</p>
                 <Select
                   options={optionsInput}
                   required={true}
@@ -118,9 +123,14 @@ function DialogCreateProduct({ onGetProducts }: DialogCreateProductProps) {
               </label>
             </div>
 
-            <div className="flex items-center justify-between w-full max-xsm:flex-col gap-y-[10px]">
-              <label className="flex flex-col  w-full">
-                <p className="text-[16px]">Imagens</p>
+            <div className="w-full">
+              <label className="flex flex-col w-full ">
+                <div className="flex justify-between">
+                  <p className="text-[15px] font-[500]">Imagens</p>
+                  <p className="text-[14px] whitespace-nowrap text-end mt-[2px]">
+                    Suba imagens na proporção 8:10
+                  </p>
+                </div>
                 <input
                   type="file"
                   accept="image/*"

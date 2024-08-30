@@ -1,7 +1,7 @@
 import { ProductModel } from "@/src/models/product";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import React from "react";
-import DialogCreateProduct from "./dialog_product/dialog_product";
+import DialogCreateProduct from "./dialog_create_product/dialog_create_product";
 
 interface HeaderProps {
   products: ProductModel[];

@@ -7,6 +7,7 @@ import { ProductModel } from "@/src/models/product";
 import productController from "@/src/controllers/product_controller";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
 import { CategoriesContext } from "@/src/context/categories";
+import DialogEditProduct from "./components/dialog_edit_product/dialog_edit_product";
 
 interface typeFilters {
   category: "asc" | "desc";
@@ -133,19 +134,10 @@ function TableProducts() {
 
           {productController.searchProducts({ products, textSearch }).length >
           0 ? (
-            (() => {
-              const result = [];
-              const filteredUsers = productController.searchProducts({
-                products,
-                textSearch,
-              });
-              for (let i = 0; i < filteredUsers.length; i++) {
-                const product = filteredUsers[i];
-
-                if (i + 1 < pagination.minPage) continue;
-                if (i + 1 > pagination.maxPage) break;
-
-                result.push(
+            productController
+              .searchProducts({ products, textSearch })
+              .map((product) => {
+                return (
                   <div
                     onClick={() => setProductSelected(product)}
                     key={product.id}
@@ -168,9 +160,7 @@ function TableProducts() {
                     <p className="text-center">R${product.price.toFixed(2)}</p>
                   </div>
                 );
-              }
-              return result;
-            })()
+              })
           ) : (
             <p className="w-full h-[200px] flex items-center justify-center">
               Nenhum produto foi encontrado com este nome
@@ -184,13 +174,8 @@ function TableProducts() {
           />
         </>
       )}
-      {/* {userSelect && (
-        <DialogEditUser
-          setUsers={setUsers}
-          userSelect={userSelect}
-          setUserSelect={setUserSelect}
-        />
-      )} */}
+
+      {productSelected && <DialogEditProduct productSelected={productSelected} onGetProducts={onGetProducts} setProductSelected={setProductSelected}/>}
     </div>
   );
 }
