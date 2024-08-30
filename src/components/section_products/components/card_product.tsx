@@ -22,7 +22,7 @@ export default function CardProduct({ product }: { product: ProductModel }) {
                     alt={`Imagem do produto ${product.title}`}
                     width={300}
                     height={200}
-                    className="object-cover aspect-[8/10]"
+                    className="aspect-[8/10]"
                   />
                 </div>
               ))
