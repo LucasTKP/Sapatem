@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/src/components/header/header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
-
+import Footer from "@/src/components/footer";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -25,11 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${poppins.className} bg-background text-background min-w-screen min-h-screen`}>
+      <body
+        className={`${poppins.className} bg-background text-background min-w-screen min-h-screen`}
+      >
         <ToastContainer autoClose={3000} />
 
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

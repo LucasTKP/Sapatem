@@ -1,6 +1,6 @@
 import { ProductDTO, ProductModel } from "@/src/models/product";
 import { FormEvent } from "react";
-import fileService from "../services/files_service";
+import fileService from "../services/file_service";
 import productService from "../services/product_service";
 import { toast } from "react-toastify";
 

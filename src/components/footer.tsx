@@ -11,22 +11,22 @@ export default function Footer() {
           <h3 className="font-bold text-[20px] max-md:text-[16px]">Menu</h3>
           <ul className="text-lighting">
             <li>
-              <a href="#sapatos" className="hover:brightness-75 max-md:text-[14px]">
+              <a href="/#sapatos" className="hover:brightness-75 max-md:text-[14px]">
                 Sapatos
               </a>
             </li>
             <li>
-              <a href="#carteiras" className="hover:brightness-75 max-md:text-[14px]">
+              <a href="/#carteiras" className="hover:brightness-75 max-md:text-[14px]">
                 Carteiras
               </a>
             </li>
             <li>
-              <a href="#cintos" className="hover:brightness-75 max-md:text-[14px]">
+              <a href="/#cintos" className="hover:brightness-75 max-md:text-[14px]">
                 Cintos
               </a>
             </li>
             <li>
-              <a href="/#contato" className="hover:brightness-75 max-md:text-[14px]">
+              <a href="/admin" className="hover:brightness-75 max-md:text-[14px]">
                 Administrador
               </a>
             </li>

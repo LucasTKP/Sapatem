@@ -52,8 +52,7 @@ export default function SectionProducts({
         setLoading(false);
       }
     }
-
-    onGetProducts();
+    if (categoryId != 0) onGetProducts();
   }, [categoryId, categoryName]);
 
   function applyOrder(filter: FilterType) {
@@ -69,7 +68,8 @@ export default function SectionProducts({
           productController.sortProductsByPriceDescending(products);
         break;
       case FilterType.NAME_ASC:
-        arrayProducts = productController.sortProductsByCategoryAscending(products);
+        arrayProducts =
+          productController.sortProductsByCategoryAscending(products);
         break;
       case FilterType.NAME_DESC:
         arrayProducts =

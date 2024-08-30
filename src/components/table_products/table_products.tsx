@@ -1,11 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Image from "next/image";
 import { ProductModel } from "@/src/models/product";
 import productController from "@/src/controllers/product_controller";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
+import { CategoriesContext } from "@/src/context/categories";
 
 interface typeFilters {
   category: "asc" | "desc";
@@ -13,6 +14,8 @@ interface typeFilters {
 }
 
 function TableProducts() {
+  const { categories } = useContext(CategoriesContext);
+
   const [products, setProducts] = useState<ProductModel[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [productSelected, setProductSelected] = useState<ProductModel | null>(
@@ -31,22 +34,29 @@ function TableProducts() {
   });
 
   useEffect(() => {
-    onGetProducts();
-  }, []);
+    if (categories) onGetProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categories]);
 
   async function onGetProducts() {
-    try {
-      const shoes = await productController.getProductsByCategory(28);
-      const wallets = await productController.getProductsByCategory(2);
-      const belts = await productController.getProductsByCategory(3);
-      setProducts([...shoes, ...wallets, ...belts]);
-    } catch (e) {
-      console.error(e);
-      alert(`Não foi possível carregar os produtsos.}`);
-    } finally {
-      setLoading(false);
+    if (categories && categories.length > 1) {
+      try {
+        const [shoes, wallets, belts] = await Promise.all([
+          productController.getProductsByCategory(categories[0].id),
+          productController.getProductsByCategory(categories[1].id),
+          productController.getProductsByCategory(categories[2].id),
+        ]);
+
+        setProducts([...shoes, ...wallets, ...belts]);
+      } catch (e) {
+        console.error(e);
+        alert(`Não foi possível carregar os produtos.`);
+      } finally {
+        setLoading(false);
+      }
     }
   }
+
   function handleOrderCategory() {
     setFilters({
       category: filters.category == "asc" ? "desc" : "asc",
@@ -151,7 +161,9 @@ function TableProducts() {
 
                     <p className="truncate">{product.title}</p>
 
-                    <p className="text-center whitespace-nowrap">{product.category.name.split('-')[0]}</p>
+                    <p className="text-center whitespace-nowrap">
+                      {product.category.name.split("-")[0]}
+                    </p>
 
                     <p className="text-center">R${product.price.toFixed(2)}</p>
                   </div>

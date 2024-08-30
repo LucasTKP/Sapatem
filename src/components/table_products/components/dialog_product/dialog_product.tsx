@@ -1,12 +1,10 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import Select, { StylesConfig } from "react-select";
-import { ProductModel } from "@/src/models/product";
-import Image from "next/image";
-import EditImageProfile from "./edit_image_profile/edit_image_profile";
 import dialogCreateController from "@/src/controllers/dialog_create_controller";
+import { CategoriesContext } from "@/src/context/categories";
 
 interface DialogCreateProductProps {
   onGetProducts: () => void;
@@ -15,7 +13,8 @@ interface DialogCreateProductProps {
 function DialogCreateProduct({ onGetProducts }: DialogCreateProductProps) {
   const [isLoading, setIsLoading] = useState(false);
   const cancelButtonRef = useRef<HTMLButtonElement>(null);
-
+  const { categories } = useContext(CategoriesContext);
+  const [optionsInput, setOptionsInput] = useState<{ value: number; label: string }[]>([]);
   const customStyles: StylesConfig = {
     control: (provided) => ({
       ...provided,
@@ -29,11 +28,16 @@ function DialogCreateProduct({ onGetProducts }: DialogCreateProductProps) {
       color: "black",
     }),
   };
-  const options = [
-    { value: 28, label: "Sapatos" },
-    { value: 19, label: "Cintos" },
-    { value: 20, label: "Carteiras" },
-  ];
+
+  useEffect(() => {
+    if (categories) {
+      const options = [];
+      for (let category of categories) {
+        options.push({ value: category.id, label: category.name.split("-")[0] });
+      }
+      setOptionsInput(options);
+    }
+  }, [categories]);
 
   function onCloseDialog() {
     if (cancelButtonRef.current) {
@@ -106,7 +110,7 @@ function DialogCreateProduct({ onGetProducts }: DialogCreateProductProps) {
               <label className="flex flex-col w-full">
                 <p className="text-[16px]">Categoria</p>
                 <Select
-                  options={options}
+                  options={optionsInput}
                   required={true}
                   name="category"
                   styles={customStyles}

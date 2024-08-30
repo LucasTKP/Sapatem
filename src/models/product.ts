@@ -1,3 +1,5 @@
+import { CategoryModel } from "./category";
+
 export interface ProductModel {
   id: number;
   title: string;

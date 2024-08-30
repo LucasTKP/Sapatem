@@ -38,22 +38,22 @@ export default function HeaderMenu() {
           <ul className="font-medium flex flex-col gap-y-[5px]">
             <HeaderMenuButton
               title={"Sapatos"}
-              href={"#sapatos"}
+              href={"/#sapatos"}
               onClick={handleMenuClose}
             />
             <HeaderMenuButton
               title={"Carteiras"}
-              href={"#carteiras"}
+              href={"/#carteiras"}
               onClick={handleMenuClose}
             />
             <HeaderMenuButton
               title={"Cintos"}
-              href={"#cintos"}
+              href={"/#cintos"}
               onClick={handleMenuClose}
             />
             <HeaderMenuButton
               title={"Administrador"}
-              href={"#cintos"}
+              href={"/admin"}
               onClick={handleMenuClose}
             />
           </ul>

@@ -7,7 +7,6 @@ async function getProductsByCategory(categoryId: number): Promise<AxiosResponse<
 }
 
 async function uploadProduct(product: ProductDTO) {
-  console.log(product)
   return await axiosInstance.post("/products", product);
 }
 
