@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Header from "./header";
-import Footer from "./footer";
+import Header from "./components/header";
+import Footer from "./components/footer";
 import Image from "next/image";
 import { ProductModel } from "@/src/models/product";
 import productController from "@/src/controllers/product_controller";
@@ -31,22 +31,22 @@ function TableProducts() {
   });
 
   useEffect(() => {
-    async function onGetProducts() {
-      try {
-        const shoes = await productController.getProductsByCategory(1);
-        const wallets = await productController.getProductsByCategory(2);
-        const belts = await productController.getProductsByCategory(3);
-        setProducts([...shoes, ...wallets, ...belts]);
-      } catch (e) {
-        console.error(e);
-        alert(`Não foi possível carregar os produtsos.}`);
-      } finally {
-        setLoading(false);
-      }
-    }
-
     onGetProducts();
   }, []);
+
+  async function onGetProducts() {
+    try {
+      const shoes = await productController.getProductsByCategory(28);
+      const wallets = await productController.getProductsByCategory(2);
+      const belts = await productController.getProductsByCategory(3);
+      setProducts([...shoes, ...wallets, ...belts]);
+    } catch (e) {
+      console.error(e);
+      alert(`Não foi possível carregar os produtsos.}`);
+    } finally {
+      setLoading(false);
+    }
+  }
   function handleOrderCategory() {
     setFilters({
       category: filters.category == "asc" ? "desc" : "asc",
@@ -77,11 +77,20 @@ function TableProducts() {
         products={products}
         setTextSearch={setTextSearch}
         setPagination={setPagination}
+        onGetProducts={onGetProducts}
       />
       {products.length == 0 ? (
-        <div className="w-full h-[400px] flex items-center justify-center">
-          <p>Nenhum produto foi encontrado</p>
-        </div>
+        loading ? (
+          <div
+            className={
+              "relative flex items-center justify-center w-[50px] h-[50px] rounded-full border-[7px] border-t-primary/50 border-[#5c5b5b] animate-spin mx-auto ml-auto mt-auto mb-auto"
+            }
+          />
+        ) : (
+          <p className="w-full h-[200px] flex items-center justify-center mx-auto ml-auto mt-auto mb-auto">
+            Nenhum produto foi encontrado
+          </p>
+        )
       ) : (
         <>
           <div className="grid grid-cols-[40px_1fr_100px_190px] max-sm:grid-cols-[35px_1fr_100px_100px] gap-[10px] max-xsm:gap-[5px] px-[10px] border-y-[1px] border-terciary bg-terciary/20 items-center text-[17px] max-xsm:text-[16px] font-[600] py-[5px] ">
@@ -142,9 +151,9 @@ function TableProducts() {
 
                     <p className="truncate">{product.title}</p>
 
-                    <p className="text-center">{product.category.name}</p>
+                    <p className="text-center whitespace-nowrap">{product.category.name.split('-')[0]}</p>
 
-                    <p className="text-center">{product.price}</p>
+                    <p className="text-center">R${product.price.toFixed(2)}</p>
                   </div>
                 );
               }
@@ -152,7 +161,7 @@ function TableProducts() {
             })()
           ) : (
             <p className="w-full h-[200px] flex items-center justify-center">
-              Nenhum usuário foi encontrado com este nome
+              Nenhum produto foi encontrado com este nome
             </p>
           )}
           <Footer

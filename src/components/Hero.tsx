@@ -6,7 +6,7 @@ import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
 
 export default function Hero() {
-  const nameImages = ["shoe_hero.png", "belt_hero.png", "wallets_hero.png"];
+  const nameImages = ["shoe_hero.png", "belt_hero.png", "wallet_hero.png"];
   const links = ["#sapatos", "#carteiras", "#cintos"];
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 3000, stopOnInteraction: false }),

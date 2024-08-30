@@ -1,6 +1,6 @@
-import { createProduct, ProductModel } from "../models/product";
+import { axiosInstance } from "../libs/axios";
+import { createProduct, ProductDTO, ProductModel } from "../models/product";
 import productService from "../services/product_service";
-
 async function getProductsByCategory(
   categoryId: number
 ): Promise<Array<ProductModel>> {
@@ -22,12 +22,16 @@ async function getProductsByCategory(
 function sortProductsByCategoryAscending(
   products: ProductModel[]
 ): ProductModel[] {
-  return products.sort((a, b) => a.category.name.localeCompare(b.category.name));
+  return products.sort((a, b) =>
+    a.category.name.localeCompare(b.category.name)
+  );
 }
 function sortProductsByCategoryDescending(
   products: ProductModel[]
 ): ProductModel[] {
-  return products.sort((a, b) => b.category.name.localeCompare(a.category.name));
+  return products.sort((a, b) =>
+    b.category.name.localeCompare(a.category.name)
+  );
 }
 
 function sortProductsByPriceAscending(
