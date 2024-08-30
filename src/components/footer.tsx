@@ -1,32 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/assets/images/logo.png";
+import logo from "@/public/images/logo.png";
 
 export default function Footer() {
   return (
     <footer className="py-10 text-white border-t-2 border-gray-500 bg-primary px-[10%] max-md:px-[2%]">
-      <div className="container flex justify-between flex-wrap  max-md:gap-5 gap-3">
-        <Image className="w-[100px] h-full" src={Logo} alt="Logo 2Core" />
+      <div className="container flex justify-between items-start flex-wrap  max-md:gap-5 gap-3">
+        <Image className="w-[100px] h-auto" src={logo} width={420} height={381} alt="Logo Sapatem" />
         <div>
           <h3 className="font-bold text-[20px] max-md:text-[16px]">Menu</h3>
           <ul className="text-lighting">
             <li>
-              <a href="/#services" className="hover:brightness-75 max-md:text-[14px]">
+              <a href="/#sapatos" className="hover:brightness-75 max-md:text-[14px]">
                 Sapatos
               </a>
             </li>
             <li>
-              <a href="/#diffs" className="hover:brightness-75 max-md:text-[14px]">
+              <a href="/#carteiras" className="hover:brightness-75 max-md:text-[14px]">
                 Carteiras
               </a>
             </li>
             <li>
-              <a href="/#blog" className="hover:brightness-75 max-md:text-[14px]">
+              <a href="/#cintos" className="hover:brightness-75 max-md:text-[14px]">
                 Cintos
               </a>
             </li>
             <li>
-              <a href="/#contato" className="hover:brightness-75 max-md:text-[14px]">
+              <a href="/admin" className="hover:brightness-75 max-md:text-[14px]">
                 Administrador
               </a>
             </li>
