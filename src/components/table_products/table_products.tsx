@@ -136,7 +136,10 @@ function TableProducts() {
           0 ? (
             productController
               .searchProducts({ products, textSearch })
-              .map((product) => {
+              .map((product, i) => {
+                if (i < pagination.minPage) return
+                if (i > pagination.maxPage) return;
+
                 return (
                   <div
                     onClick={() => setProductSelected(product)}

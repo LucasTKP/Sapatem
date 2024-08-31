@@ -109,7 +109,7 @@ export default function SectionProducts({
               <option value={FilterType.NAME_DESC}>Nome: Decrescente</option>
             </select>
           </div>
-          <div className="flex flex-wrap gap-[30px] max-xl:gap-[25px] max-lg:gap-[20px] max-md:gap-[15px] mt-[10px] justify-center items-center">
+          <div className="flex flex-wrap gap-[25px] max-xl:gap-[20px] max-lg:gap-[15px] max-md:gap-[10px] mt-[10px] justify-center items-center">
             {currentProducts.map((product) => (
               <div key={product.id}>
                 <CardProduct product={product} />
