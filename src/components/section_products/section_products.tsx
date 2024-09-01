@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import CardProduct from "./components/card_product";
 import productController from "@/src/controllers/product_controller";
 import { createProduct, ProductModel } from "@/src/models/product";
+import Link from "next/link";
 
 interface Props {
   categoryId: number;
@@ -118,15 +119,16 @@ export default function SectionProducts({
           </div>
           <div className="flex justify-center mt-[10px] gap-x-[8px]">
             {pageNumbers.map((number) => (
-              <button
+              <Link
                 key={number}
                 onClick={() => paginate(number)}
+                href={`#${title.toLocaleLowerCase()}`}
                 className={`text-black text-[18px] ${
                   currentPage === number ? "underline" : ""
                 }`}
               >
                 {number}
-              </button>
+              </Link>
             ))}
           </div>
         </>
