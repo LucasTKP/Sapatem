@@ -125,6 +125,7 @@ function DialogEditProduct({
                     (option) => option.value === productSelected.category.id
                   )}
                   styles={customStyles}
+                  placeholder="Selecione uma categoria"
                 />
               </label>
             </div>

@@ -119,6 +119,7 @@ function DialogCreateProduct({ onGetProducts }: DialogCreateProductProps) {
                   required={true}
                   name="category"
                   styles={customStyles}
+                  placeholder="Selecione uma categoria"
                 />
               </label>
             </div>
